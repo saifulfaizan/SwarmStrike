@@ -57,8 +57,8 @@ The framework is organized into the following modules:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/unified-cybersecurity-framework.git
-   cd unified-cybersecurity-framework
+   git [clone https://github.com/your-username/unified-cybersecurity-framework.git](https://github.com/saifulfaizan/SwarmStrike)
+   cd SwarmStrike
    ```
 2. Install the required dependencies:
    ```bash
@@ -81,3 +81,4 @@ Each module can be run independently for specific tasks. Refer to the source cod
 
 ## Disclaimer
 This framework is intended for educational and research purposes only. The authors are not responsible for any misuse or damage caused by this software. Unauthorized use of this framework for illegal activities is strictly prohibited.
+
