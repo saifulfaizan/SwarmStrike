@@ -61,6 +61,24 @@ python shodan_pentest.py --cve "CVE-2023-23397" --limit 5
 
 # Menarget IP spesifik
 python shodan_pentest.py --target "93.184.216.34"
+
+# Menjalankan test aktif untuk semua fase (1-6)
+python shodan_pentest_enhanced.py --target "93.184.216.34" --test-all-phases
+
+# Pengujian dengan intensitas tinggi dan mode stealth
+python shodan_pentest_enhanced.py --query "nginx country:ID" --intensity 10 --stealth --test-all-phases
+
+# Menjalankan demo cepat untuk semua fase
+python run_shodan_demo.py --demo-type quick
+
+# Menjalankan demo lengkap dengan multiple targets
+python run_shodan_demo.py --demo-type full
+
+# Menjalankan demo dengan mode stealth
+python run_shodan_demo.py --demo-type stealth
+
+# Menjalankan demo yang terfokus pada target spesifik
+python run_shodan_demo.py --demo-type focused --target "192.168.1.100"
 ```
 
 ### 4. Menggunakan API dalam Kode Python
@@ -114,6 +132,47 @@ Modul ini dapat beroperasi dalam dua mode:
 2. **Mode Simulasi**
    - Berjalan tanpa API key
    - Menghasilkan data simulasi untuk demonstrasi dan testing
+
+## Fase Pengujian
+
+Modul enhanced (`shodan_pentest_enhanced.py`) melakukan pengujian aktual untuk 6 fase penetration testing:
+
+### Fase 1: Reconnaissance
+- Melakukan scanning port secara aktif (21, 22, 23, 25, 53, 80, 443, dll)
+- Mengidentifikasi layanan yang berjalan pada setiap port
+- Mengumpulkan informasi dari web server dan header HTTP
+
+### Fase 2: Vulnerability Analysis
+- Menguji kerentanan umum seperti:
+  - OpenSSH Username Enumeration
+  - Log4j Remote Code Execution
+  - Default Credentials
+  - Directory Traversal
+  - TLS/SSL Weak Cipher Suites
+- Menganalisis dan memberi skor CVSS untuk setiap kerentanan
+
+### Fase 3: Exploit Development
+- Mengembangkan exploit untuk kerentanan yang ditemukan
+- Menghasilkan payload yang sesuai dengan target (reverse_shell, bind_shell, dll)
+- Menerapkan teknik evasion sesuai dengan tingkat intensitas
+
+### Fase 4: Exploitation
+- Menjalankan eksploitasi pada target yang rentan
+- Mencoba multiple exploits jika yang pertama gagal
+- Melaporkan hasil exploit (success/failure) dengan detail akses
+
+### Fase 5: Post-Exploitation
+- Melakukan privilege escalation jika memungkinkan
+- Mengumpulkan kredensial dari sistem target
+- Melakukan internal reconnaissance untuk menemukan host lain
+- Menemukan file sensitif
+- Menginstal backdoor/persistence jika tingkat intensitas tinggi
+
+### Fase 6: Data Exfiltration
+- Mengekstrak data sensitif yang ditemukan
+- Mengenkripsi data dengan algoritma yang kuat
+- Menggunakan metode exfiltrasi yang berbeda sesuai dengan mode stealth
+- Melaporkan statistik exfiltrasi data
 
 ## Catatan Keamanan
 
