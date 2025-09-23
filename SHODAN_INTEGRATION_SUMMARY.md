@@ -52,36 +52,44 @@ pip install shodan ipaddress tqdm
 
 ### 3. Jalankan Penetration Test dengan Shodan
 
+#### Pengujian NYATA dengan API Shodan
+
+Gunakan `shodan_real_testing.py` untuk pengujian nyata dengan API Shodan:
+
 ```bash
-# Mencari target di Indonesia yang menggunakan Nginx
-python shodan_pentest.py --query "nginx country:ID" --limit 5
+# Pengujian lengkap dengan query Shodan
+python shodan_real_testing.py --query "nginx country:ID" --limit 3
 
-# Mencari target berdasarkan kerentanan
-python shodan_pentest.py --cve "CVE-2023-23397" --limit 5
+# Pengujian terhadap target IP spesifik
+python shodan_real_testing.py --target "93.184.216.34"
 
-# Menarget IP spesifik
-python shodan_pentest.py --target "93.184.216.34"
-
-# Menjalankan test aktif untuk semua fase (1-6)
-python shodan_pentest_enhanced.py --target "93.184.216.34" --test-all-phases
+# Pengujian untuk mencari target dengan CVE tertentu
+python shodan_real_testing.py --cve "CVE-2023-23397" --limit 2
 
 # Pengujian dengan intensitas tinggi dan mode stealth
-python shodan_pentest_enhanced.py --query "nginx country:ID" --intensity 10 --stealth --test-all-phases
+python shodan_real_testing.py --query "nginx country:ID" --intensity 8 --stealth
 
-# Menjalankan demo cepat untuk semua fase
-python run_shodan_demo.py --demo-type quick
+# Menjalankan hanya fase tertentu (1-6)
+python shodan_real_testing.py --target "93.184.216.34" --only-phase 1
 
-# Menjalankan demo lengkap dengan multiple targets (simulasi)
-python run_shodan_demo.py --demo-type full
+# Menyimpan hasil dalam file JSON
+python shodan_real_testing.py --query "webcam country:US" --output "results.json"
+```
 
-# Menjalankan pengujian NYATA dengan API Shodan sebenarnya
-python run_shodan_demo.py --demo-type real
+#### Pengujian Simulasi (Legacy)
 
-# Menjalankan demo dengan mode stealth
-python run_shodan_demo.py --demo-type stealth
+Untuk tujuan demonstrasi, Anda masih bisa menggunakan skrip lama:
 
-# Menjalankan demo yang terfokus pada target spesifik
-python run_shodan_demo.py --demo-type focused --target "192.168.1.100"
+```bash
+# Pengujian simulasi dasar
+python shodan_pentest.py --query "nginx country:ID" --limit 5
+
+# Pengujian simulasi dengan target spesifik
+python shodan_pentest.py --target "93.184.216.34"
+
+# Pengujian simulasi dengan fase aktif
+python shodan_pentest_enhanced.py --target "93.184.216.34" --test-all-phases
+```
 ```
 
 ### 4. Menggunakan API dalam Kode Python
@@ -126,24 +134,38 @@ for target in hasil['targets']:
 
 ## Mode Operasi
 
-Modul ini dapat beroperasi dalam dua mode:
+Tool pengujian nyata (`shodan_real_testing.py`) dirancang khusus untuk pengujian nyata dengan API Shodan, dengan fitur:
 
 1. **Mode API (Live)**
-   - Menggunakan API key Shodan untuk data real-time
+   - HANYA menggunakan API key Shodan untuk data real-time
    - Memerlukan koneksi internet dan API key yang valid
+   - Menampilkan peringatan keamanan dan meminta konfirmasi sebelum pengujian
+   - Mendukung parameter keamanan seperti mode stealth dan kontrol intensitas
 
-2. **Mode Simulasi**
-   - Berjalan tanpa API key
-   - Menghasilkan data simulasi untuk demonstrasi dan testing
+2. **Verifikasi API Key**
+   - Memeriksa keberadaan API key valid di secure_config.json
+   - Menggunakan variabel lingkungan SHODAN_API_KEY sebagai fallback
+   - Memberikan pesan kesalahan yang jelas jika API key tidak ditemukan
+
+3. **Fitur Keamanan**
+   - Konfirmasi sebelum menjalankan pengujian
+   - Pembatasan jumlah target secara default
+   - Peringatan untuk memastikan izin pengujian legal
+
+4. **Pengujian Bertahap**
+   - Pilihan untuk menjalankan seluruh fase pengujian
+   - Opsi untuk fokus pada fase spesifik sesuai kebutuhan
+   - Output terperinci tentang progres dan hasil pengujian
 
 ## Fase Pengujian
 
-Modul enhanced (`shodan_pentest_enhanced.py`) melakukan pengujian aktual untuk 6 fase penetration testing:
+Modul pengujian nyata (`shodan_real_testing.py`) melakukan pengujian aktual untuk 6 fase penetration testing. Anda dapat menjalankan semua fase atau fokus pada fase tertentu dengan parameter `--only-phase`.
 
 ### Fase 1: Reconnaissance
 - Melakukan scanning port secara aktif (21, 22, 23, 25, 53, 80, 443, dll)
 - Mengidentifikasi layanan yang berjalan pada setiap port
 - Mengumpulkan informasi dari web server dan header HTTP
+- Contoh: `python shodan_real_testing.py --query "nginx country:ID" --only-phase 1`
 
 ### Fase 2: Vulnerability Analysis
 - Menguji kerentanan umum seperti:
@@ -153,16 +175,19 @@ Modul enhanced (`shodan_pentest_enhanced.py`) melakukan pengujian aktual untuk 6
   - Directory Traversal
   - TLS/SSL Weak Cipher Suites
 - Menganalisis dan memberi skor CVSS untuk setiap kerentanan
+- Contoh: `python shodan_real_testing.py --target "93.184.216.34" --only-phase 2`
 
 ### Fase 3: Exploit Development
 - Mengembangkan exploit untuk kerentanan yang ditemukan
 - Menghasilkan payload yang sesuai dengan target (reverse_shell, bind_shell, dll)
 - Menerapkan teknik evasion sesuai dengan tingkat intensitas
+- Contoh: `python shodan_real_testing.py --cve "CVE-2023-23397" --only-phase 3`
 
 ### Fase 4: Exploitation
 - Menjalankan eksploitasi pada target yang rentan
 - Mencoba multiple exploits jika yang pertama gagal
 - Melaporkan hasil exploit (success/failure) dengan detail akses
+- Contoh: `python shodan_real_testing.py --target "93.184.216.34" --only-phase 4 --stealth`
 
 ### Fase 5: Post-Exploitation
 - Melakukan privilege escalation jika memungkinkan
@@ -170,12 +195,30 @@ Modul enhanced (`shodan_pentest_enhanced.py`) melakukan pengujian aktual untuk 6
 - Melakukan internal reconnaissance untuk menemukan host lain
 - Menemukan file sensitif
 - Menginstal backdoor/persistence jika tingkat intensitas tinggi
+- Contoh: `python shodan_real_testing.py --target "93.184.216.34" --only-phase 5 --intensity 7`
 
 ### Fase 6: Data Exfiltration
 - Mengekstrak data sensitif yang ditemukan
 - Mengenkripsi data dengan algoritma yang kuat
 - Menggunakan metode exfiltrasi yang berbeda sesuai dengan mode stealth
 - Melaporkan statistik exfiltrasi data
+- Contoh: `python shodan_real_testing.py --target "93.184.216.34" --only-phase 6 --output "exfil_results.json"`
+
+## Parameter Pengujian
+
+Tool pengujian nyata Shodan mendukung berbagai parameter untuk mengontrol perilaku dan intensitas pengujian:
+
+### Parameter Target
+- `--query`: Query pencarian Shodan (contoh: "apache country:US")
+- `--target`: IP spesifik untuk ditargetkan
+- `--cve`: Mencari target yang rentan terhadap CVE tertentu
+- `--limit`: Jumlah maksimum target (default: 3)
+
+### Parameter Pengujian
+- `--intensity`: Intensitas pengujian dari 1 (minimal) hingga 10 (agresif)
+- `--stealth`: Aktifkan mode stealth untuk meminimalkan deteksi
+- `--only-phase`: Jalankan hanya fase pengujian tertentu (1-6)
+- `--output`: File keluaran untuk hasil detail (format JSON)
 
 ## Catatan Keamanan
 
