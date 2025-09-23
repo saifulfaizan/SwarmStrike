@@ -1,0 +1,138 @@
+{
+  "operation_id": "OP-CONT-1758628348",
+  "report_time": "2025-09-23T20:52:32.729633",
+  "operation_duration_hours": 1.0011087927777778,
+  "systems_discovered": 41,
+  "vulnerabilities_discovered": 2,
+  "high_value_targets": [
+    {
+      "ip": "192.168.1.8",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.143",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.191",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.44",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.32",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.202",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.241",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.75",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.88",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.223",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.87",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.213",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.246",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    }
+  ],
+  "critical_vulnerabilities": [
+    {
+      "id": "CVE-2025-28476",
+      "name": "Windows Quantum Bridge Remote Code Execution",
+      "cvss": 9.8
+    },
+    {
+      "id": "CVE-2025-30982",
+      "name": "Neural Network Poisoning Attack",
+      "cvss": 8.7
+    }
+  ]
+}

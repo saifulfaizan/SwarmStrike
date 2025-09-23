@@ -1,0 +1,14 @@
+{
+  "CommandDispatcher": {
+    "blockchain_address": "0xc37f2d948ff7ba0b721029df120a2d318c40c243",
+    "deployed_at": "2025-09-23T19:44:34.473558"
+  },
+  "DataExfiltrator": {
+    "blockchain_address": "0x25cabe1a8f9586fa16c3eeb9bcb4edeb4dab79b1",
+    "deployed_at": "2025-09-23T19:44:34.473558"
+  },
+  "PaymentProcessor": {
+    "blockchain_address": "0xef1564d308cc89f2eafb500eeadbd75df12ded4b",
+    "deployed_at": "2025-09-23T19:44:34.473558"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "operation_id": "OP-CONT-1758628348",
+  "report_time": "2025-09-23T21:52:36.370161",
+  "operation_duration_hours": 2.0021200505555554,
+  "systems_discovered": 77,
+  "vulnerabilities_discovered": 2,
+  "high_value_targets": [
+    {
+      "ip": "192.168.1.82",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.1",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.162",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.61",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.191",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.32",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.49",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.48",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.167",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.246",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.232",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.18",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.124",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.175",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.132",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.205",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.139",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.158",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.104",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.92",
+      "os": "Ubuntu 25.04",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.184",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.145",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.168",
+      "os": "Windows 11",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    },
+    {
+      "ip": "192.168.1.188",
+      "os": "macOS 17.2",
+      "services": [
+        "http",
+        "ssh",
+        "dns"
+      ]
+    }
+  ],
+  "critical_vulnerabilities": [
+    {
+      "id": "CVE-2025-28476",
+      "name": "Windows Quantum Bridge Remote Code Execution",
+      "cvss": 9.8
+    },
+    {
+      "id": "CVE-2025-30982",
+      "name": "Neural Network Poisoning Attack",
+      "cvss": 8.7
+    }
+  ]
+}

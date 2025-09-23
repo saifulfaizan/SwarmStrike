@@ -1,0 +1,24 @@
+{
+  "environment": "development",
+  "api_keys": {
+    "primary": "59afdb3bcb61b1849633905312a066828d15fd57c355ced7432133974bc928fa",
+    "secondary": "945cab3a85aa3c56e27e67695d83c058750b63c0aaaeee9b3114d3f03513b93d"
+  },
+  "security": {
+    "encryption_key": "2d53453d0492c419109ac6536f671f0c8b3837e28a44370cf5de0bf68d1be569",
+    "signing_key": "f0f5a5364b9665ce8502f2ea3f5fccea4cfb967cc74e7a498e28723fea1b20f9",
+    "api_rate_limit": 5000,
+    "max_connections": 500,
+    "secure_mode": false
+  },
+  "logging": {
+    "level": "DEBUG",
+    "file": "framework.log",
+    "rotate_size_mb": 10,
+    "keep_logs_days": 30
+  },
+  "timestamps": {
+    "created": "2025-09-23T22:11:54.373835",
+    "expires": null
+  }
+}
