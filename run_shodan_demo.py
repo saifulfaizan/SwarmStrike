@@ -8,6 +8,7 @@ with different phases of testing
 
 import os
 import sys
+import json
 import argparse
 import logging
 from shodan_pentest_enhanced import run_shodan_pentest
@@ -19,9 +20,10 @@ logger = logging.getLogger(__name__)
 def setup_parser():
     """Set up the command line argument parser"""
     parser = argparse.ArgumentParser(description='Demonstrate Shodan penetration testing phases')
-    parser.add_argument('--demo-type', choices=['quick', 'full', 'stealth', 'focused'], 
+    parser.add_argument('--demo-type', choices=['quick', 'full', 'stealth', 'focused', 'real'], 
                         default='quick', help='Type of demo to run')
     parser.add_argument('--target', help='Optional specific target IP for focused demo')
+    parser.add_argument('--query', help='Custom Shodan query to use for real demo')
     return parser
 
 def run_quick_demo():
@@ -49,6 +51,42 @@ def run_full_demo():
         limit=3,
         intensity=8,
         stealth_mode=False,
+        test_all_phases=True
+    )
+    return result
+
+def run_real_demo():
+    """Run a real penetration test using actual Shodan data"""
+    logger.info("=== RUNNING REAL SHODAN TEST ===")
+    logger.info("This test will use real Shodan data and perform actual port scanning")
+    logger.info("IMPORTANT: Ensure you have proper authorization to scan the targets")
+    
+    # Try to load API key from config to verify it exists
+    api_key = None
+    try:
+        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "secure_config.json")
+        if os.path.exists(config_path):
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+                if 'api_keys' in config and 'shodan' in config['api_keys']:
+                    api_key = config['api_keys']['shodan']
+    except Exception as e:
+        logger.error(f"Error loading Shodan API key: {str(e)}")
+    
+    if not api_key or api_key == "YourShodanAPIKeyHere":
+        logger.error("No valid Shodan API key found in secure_config.json")
+        logger.error("Please add your Shodan API key to secure_config.json")
+        logger.error('Format: {"api_keys": {"shodan": "YOUR_ACTUAL_API_KEY"}}')
+        return {"error": "No valid Shodan API key configured"}
+    
+    logger.info("Shodan API key found. Proceeding with real test.")
+    
+    # Run with real Shodan data
+    result = run_shodan_pentest(
+        query="webcam country:US",  # Actual Shodan query - use a less intrusive target
+        limit=2,  # Limit to just 2 targets for safety
+        intensity=6,  # Medium intensity to avoid aggressive scanning
+        stealth_mode=True,  # Use stealth mode to minimize impact
         test_all_phases=True
     )
     return result
@@ -97,6 +135,8 @@ def main():
             result = run_quick_demo()
         elif args.demo_type == 'full':
             result = run_full_demo()
+        elif args.demo_type == 'real':
+            result = run_real_demo()
         elif args.demo_type == 'stealth':
             result = run_stealth_demo()
         elif args.demo_type == 'focused':

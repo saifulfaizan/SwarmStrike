@@ -71,8 +71,11 @@ python shodan_pentest_enhanced.py --query "nginx country:ID" --intensity 10 --st
 # Menjalankan demo cepat untuk semua fase
 python run_shodan_demo.py --demo-type quick
 
-# Menjalankan demo lengkap dengan multiple targets
+# Menjalankan demo lengkap dengan multiple targets (simulasi)
 python run_shodan_demo.py --demo-type full
+
+# Menjalankan pengujian NYATA dengan API Shodan sebenarnya
+python run_shodan_demo.py --demo-type real
 
 # Menjalankan demo dengan mode stealth
 python run_shodan_demo.py --demo-type stealth
